@@ -2,6 +2,15 @@
 
 REST API untuk membaca data provinsi, kabupaten/kota, kecamatan, desa, dan kode pos. Data disimpan di MySQL dan endpoint mengembalikan JSON.
 
+## Sumber Data
+
+Data yang digunakan API ini berasal dari repositori berikut:
+
+| Data | Sumber |
+| --- | --- |
+| Kode dan nama wilayah administrasi Indonesia | [cahyadsn/wilayah](https://github.com/cahyadsn/wilayah) |
+| Kode pos wilayah Indonesia | [cahyadsn/wilayah_kodepos](https://github.com/cahyadsn/wilayah_kodepos) |
+
 ## Menjalankan aplikasi
 
 Persyaratan: Go sesuai versi pada `go.mod` dan MySQL.
