@@ -20,10 +20,6 @@ func main() {
 	db := database.NewMysql()
 	defer db.Close()
 
-	if config.IS_DEV == "true" {
-		database.Migrate(db)
-	}
-
 	app := handler.NewHttp(db)
 
 	log.Fatal(app.Listen(":9876"))
