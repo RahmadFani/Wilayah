@@ -53,8 +53,9 @@ func (h *WilayahHandler) Porvince(c fiber.Ctx) error {
 func (h *WilayahHandler) City(c fiber.Ctx) error {
 
 	code := c.Query("code")
+	query := c.Query("query")
 
-	wilayah, err := h.wilayahUC.GetRegencyCity(c.RequestCtx(), code)
+	wilayah, err := h.wilayahUC.GetRegencyCity(c.RequestCtx(), code, query)
 	if err != nil {
 		return HttpError(c, http.StatusNotFound, err.Error())
 	}
@@ -75,8 +76,9 @@ func (h *WilayahHandler) City(c fiber.Ctx) error {
 func (h *WilayahHandler) District(c fiber.Ctx) error {
 
 	code := c.Query("code")
+	query := c.Query("query")
 
-	wilayah, err := h.wilayahUC.GetDistrict(c.RequestCtx(), code)
+	wilayah, err := h.wilayahUC.GetDistrict(c.RequestCtx(), code, query)
 	if err != nil {
 		return HttpError(c, http.StatusNotFound, err.Error())
 	}
@@ -97,8 +99,9 @@ func (h *WilayahHandler) District(c fiber.Ctx) error {
 func (h *WilayahHandler) SubDistrict(c fiber.Ctx) error {
 
 	code := c.Query("code")
+	query := c.Query("query")
 
-	wilayah, err := h.wilayahUC.GetSubDistrict(c.RequestCtx(), code)
+	wilayah, err := h.wilayahUC.GetSubDistrict(c.RequestCtx(), code, query)
 	if err != nil {
 		return HttpError(c, http.StatusNotFound, err.Error())
 	}

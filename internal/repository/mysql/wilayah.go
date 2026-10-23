@@ -43,14 +43,18 @@ func (w *wilayahRepository) GetPostalcode(ctx context.Context, code string) ([]m
 }
 
 // GetSubDistrict implements wilayah.Repository.
-func (w *wilayahRepository) GetSubDistrict(ctx context.Context, code string) ([]model.Wilayah, error) {
+func (w *wilayahRepository) GetSubDistrict(ctx context.Context, code string, query string) ([]model.Wilayah, error) {
 	var wilayahs []model.Wilayah
-	if err := w.db.NewSelect().
+	q := w.db.NewSelect().
 		Model(&wilayahs).
 		Where("kode LIKE ?", code+".%").
-		Where("LENGTH(kode) = 13").
-		Order("nama ASC").
-		Scan(ctx); err != nil {
+		Where("LENGTH(kode) = 13")
+
+	if query != "" {
+		q = q.Where("LOWER(nama) LIKE LOWER(?)", "%"+query+"%")
+	}
+
+	if err := q.Order("nama ASC").Scan(ctx); err != nil {
 		slog.Error("DB Scan", "error_message", err.Error())
 		return nil, err
 	}
@@ -59,14 +63,18 @@ func (w *wilayahRepository) GetSubDistrict(ctx context.Context, code string) ([]
 }
 
 // GetDistrict implements wilayah.Repository.
-func (w *wilayahRepository) GetDistrict(ctx context.Context, code string) ([]model.Wilayah, error) {
+func (w *wilayahRepository) GetDistrict(ctx context.Context, code string, query string) ([]model.Wilayah, error) {
 	var wilayahs []model.Wilayah
-	if err := w.db.NewSelect().
+	q := w.db.NewSelect().
 		Model(&wilayahs).
 		Where("kode LIKE ?", code+".%").
-		Where("LENGTH(kode) = 8").
-		Order("nama ASC").
-		Scan(ctx); err != nil {
+		Where("LENGTH(kode) = 8")
+
+	if query != "" {
+		q = q.Where("LOWER(nama) LIKE LOWER(?)", "%"+query+"%")
+	}
+
+	if err := q.Order("nama ASC").Scan(ctx); err != nil {
 		slog.Error("DB Scan", "error_message", err.Error())
 		return nil, err
 	}
@@ -75,14 +83,18 @@ func (w *wilayahRepository) GetDistrict(ctx context.Context, code string) ([]mod
 }
 
 // GetRegencyCity implements wilayah.Repository.
-func (w *wilayahRepository) GetRegencyCity(ctx context.Context, code string) ([]model.Wilayah, error) {
+func (w *wilayahRepository) GetRegencyCity(ctx context.Context, code string, query string) ([]model.Wilayah, error) {
 	var wilayahs []model.Wilayah
-	if err := w.db.NewSelect().
+	q := w.db.NewSelect().
 		Model(&wilayahs).
 		Where("kode LIKE ?", code+".%").
-		Where("LENGTH(kode) = 5").
-		Order("nama ASC").
-		Scan(ctx); err != nil {
+		Where("LENGTH(kode) = 5")
+
+	if query != "" {
+		q = q.Where("LOWER(nama) LIKE LOWER(?)", "%"+query+"%")
+	}
+
+	if err := q.Order("nama ASC").Scan(ctx); err != nil {
 		slog.Error("DB Scan", "error_message", err.Error())
 		return nil, err
 	}

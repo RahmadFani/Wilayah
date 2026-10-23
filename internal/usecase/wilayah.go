@@ -21,15 +21,15 @@ func (u *WilayahUseCase) GetProvince(ctx context.Context, query string) ([]model
 	return u.wilayahRepo.GetProvince(ctx, query)
 }
 
-func (u *WilayahUseCase) GetRegencyCity(ctx context.Context, code string) ([]model.Wilayah, error) {
-	return u.wilayahRepo.GetRegencyCity(ctx, code)
+func (u *WilayahUseCase) GetRegencyCity(ctx context.Context, code string, query string) ([]model.Wilayah, error) {
+	return u.wilayahRepo.GetRegencyCity(ctx, code, query)
 }
 
-func (u *WilayahUseCase) GetDistrict(ctx context.Context, code string) ([]model.Wilayah, error) {
-	return u.wilayahRepo.GetDistrict(ctx, code)
+func (u *WilayahUseCase) GetDistrict(ctx context.Context, code string, query string) ([]model.Wilayah, error) {
+	return u.wilayahRepo.GetDistrict(ctx, code, query)
 }
-func (u *WilayahUseCase) GetSubDistrict(ctx context.Context, code string) ([]model.Wilayah, error) {
-	return u.wilayahRepo.GetSubDistrict(ctx, code)
+func (u *WilayahUseCase) GetSubDistrict(ctx context.Context, code string, query string) ([]model.Wilayah, error) {
+	return u.wilayahRepo.GetSubDistrict(ctx, code, query)
 }
 func (u *WilayahUseCase) GetPostalcode(ctx context.Context, code string) ([]model.WilayahKodepos, error) {
 	return u.wilayahRepo.GetPostalcode(ctx, code)
