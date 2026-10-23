@@ -91,14 +91,18 @@ func (w *wilayahRepository) GetRegencyCity(ctx context.Context, code string) ([]
 }
 
 // GetProvince implements wilayah.Repository.
-func (w *wilayahRepository) GetProvince(ctx context.Context) ([]model.Wilayah, error) {
+func (w *wilayahRepository) GetProvince(ctx context.Context, query string) ([]model.Wilayah, error) {
 	var wilayahs []model.Wilayah
-	if err := w.db.NewSelect().
+	q := w.db.NewSelect().
 		Model(&wilayahs).
 		Where("kode NOT LIKE ?", "%.%.%").
-		Where("kode NOT LIKE ?", "%.%").
-		Order("nama ASC").
-		Scan(ctx); err != nil {
+		Where("kode NOT LIKE ?", "%.%")
+
+	if query != "" {
+		q = q.Where("LOWER(nama) LIKE LOWER(?)", "%"+query+"%")
+	}
+
+	if err := q.Order("nama ASC").Scan(ctx); err != nil {
 		slog.Error("DB Scan", "error_message", err.Error())
 		return nil, err
 	}

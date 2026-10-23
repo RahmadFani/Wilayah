@@ -17,8 +17,8 @@ func NewWilayahUseCase(wilayahRepo wilayah.Repository) *WilayahUseCase {
 	}
 }
 
-func (u *WilayahUseCase) GetProvince(ctx context.Context) ([]model.Wilayah, error) {
-	return u.wilayahRepo.GetProvince(ctx)
+func (u *WilayahUseCase) GetProvince(ctx context.Context, query string) ([]model.Wilayah, error) {
+	return u.wilayahRepo.GetProvince(ctx, query)
 }
 
 func (u *WilayahUseCase) GetRegencyCity(ctx context.Context, code string) ([]model.Wilayah, error) {

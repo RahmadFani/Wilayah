@@ -30,7 +30,9 @@ func (h *WilayahHandler) PublicRouteWilayah(route fiber.Router) {
 
 func (h *WilayahHandler) Porvince(c fiber.Ctx) error {
 
-	wilayah, err := h.wilayahUC.GetProvince(c.RequestCtx())
+	query := c.Query("query")
+
+	wilayah, err := h.wilayahUC.GetProvince(c.RequestCtx(), query)
 	if err != nil {
 		return HttpError(c, http.StatusNotFound, err.Error())
 	}
