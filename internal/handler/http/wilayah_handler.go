@@ -19,6 +19,7 @@ func NewWilayahHandler(wilayahUC *usecase.WilayahUseCase) *WilayahHandler {
 }
 
 func (h *WilayahHandler) PublicRouteWilayah(route fiber.Router) {
+	route.Get("/", h.Wilayah)
 	route.Get("/province", h.Porvince)
 	route.Get("/city", h.City)
 	route.Get("/district", h.District)
@@ -122,4 +123,14 @@ func (h *WilayahHandler) Postalcode(c fiber.Ctx) error {
 	}
 
 	return HttpSuccess(c, http.StatusAccepted, kodepos)
+}
+
+func (h *WilayahHandler) Wilayah(c fiber.Ctx) error {
+
+	wilayah, err := h.wilayahUC.GetWilayah(c.RequestCtx())
+	if err != nil {
+		return HttpError(c, http.StatusNotFound, err.Error())
+	}
+
+	return HttpSuccess(c, http.StatusAccepted, wilayah)
 }

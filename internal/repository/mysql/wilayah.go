@@ -13,6 +13,20 @@ type wilayahRepository struct {
 	db *bun.DB
 }
 
+// GetWilayah implements wilayah.Repository.
+func (w *wilayahRepository) GetWilayah(ctx context.Context) ([]model.Wilayah, error) {
+	var wilayahs []model.Wilayah
+
+	if err := w.db.NewSelect().
+		Model(&wilayahs).
+		Scan(ctx); err != nil {
+		slog.Error("DB Scan", "error_message", err.Error())
+		return nil, err
+	}
+
+	return wilayahs, nil
+}
+
 // GetPostalcode implements wilayah.Repository.
 func (w *wilayahRepository) GetPostalcode(ctx context.Context, code string) ([]model.WilayahKodepos, error) {
 	var kodepos []model.WilayahKodepos

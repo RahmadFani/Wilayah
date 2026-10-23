@@ -34,3 +34,7 @@ func (u *WilayahUseCase) GetSubDistrict(ctx context.Context, code string) ([]mod
 func (u *WilayahUseCase) GetPostalcode(ctx context.Context, code string) ([]model.WilayahKodepos, error) {
 	return u.wilayahRepo.GetPostalcode(ctx, code)
 }
+
+func (u *WilayahUseCase) GetWilayah(ctx context.Context) ([]model.Wilayah, error) {
+	return u.wilayahRepo.GetWilayah(ctx)
+}

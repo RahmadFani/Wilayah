@@ -7,6 +7,7 @@ import (
 )
 
 type Repository interface {
+	GetWilayah(ctx context.Context) ([]model.Wilayah, error)
 	GetProvince(ctx context.Context) ([]model.Wilayah, error)
 	GetRegencyCity(ctx context.Context, code string) ([]model.Wilayah, error)
 	GetDistrict(ctx context.Context, code string) ([]model.Wilayah, error)
