@@ -24,6 +24,7 @@ Atur environment variable database berikut sebelum menjalankan aplikasi:
 | `DB_USER` | Username MySQL |
 | `DB_PASS` | Password MySQL |
 | `DB_NAME` | Nama database |
+| `ALLOW_ORIGINS` | Jika ingin menambahkan cors example https://abc.com,http://localhost:1111 |
 | `IS_DEV` | Default `true`. Jika bernilai `true`, aplikasi menjalankan migrasi saat startup. |
 
 Contoh menjalankan secara lokal:
