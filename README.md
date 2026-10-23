@@ -36,6 +36,7 @@ export DB_USER=root
 export DB_PASS=password
 export DB_NAME=wilayah
 export IS_DEV=true
+export ALLOW_ORIGINS=https://abc.com,http://localhost:1111
 
 go run ./cmd/api
 ```
@@ -49,6 +50,7 @@ Semua endpoint menggunakan metode `GET` dan tidak memerlukan autentikasi.
 | Endpoint | Query | Keterangan |
 | --- | --- | --- |
 | `/healthz` | — | Pemeriksaan kesehatan server. |
+| `/wilayah` | — | Seluruh wilayah |
 | `/wilayah/province` | — | Daftar provinsi. |
 | `/wilayah/city` | `code` | Daftar kabupaten/kota di bawah kode provinsi. |
 | `/wilayah/district` | `code` | Daftar kecamatan di bawah kode kabupaten/kota. |
@@ -67,6 +69,7 @@ Desa           11.01.01.2001
 Contoh pemanggilan:
 
 ```sh
+curl http://localhost:9876/wilayah
 curl http://localhost:9876/wilayah/province
 curl 'http://localhost:9876/wilayah/city?code=11'
 curl 'http://localhost:9876/wilayah/district?code=11.01'
