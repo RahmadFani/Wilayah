@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v3/middleware/compress"
 	"github.com/rahmadfani/wilayah/internal/dto"
 	"github.com/rahmadfani/wilayah/internal/usecase"
 )
@@ -19,7 +20,7 @@ func NewWilayahHandler(wilayahUC *usecase.WilayahUseCase) *WilayahHandler {
 }
 
 func (h *WilayahHandler) PublicRouteWilayah(route fiber.Router) {
-	route.Get("/", h.Wilayah)
+	route.Get("/", compress.New(), h.Wilayah)
 	route.Get("/province", h.Porvince)
 	route.Get("/city", h.City)
 	route.Get("/district", h.District)
