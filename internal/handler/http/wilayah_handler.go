@@ -104,7 +104,7 @@ func (h *WilayahHandler) SubDistrict(c fiber.Ctx) error {
 		res = append(res, dto.WilayahResponse{
 			Code:       w.Kode,
 			Nama:       w.Nama,
-			ParentCode: w.Kode[:5],
+			ParentCode: w.Kode[:8],
 			Tingkat:    "Desa",
 		})
 	}
